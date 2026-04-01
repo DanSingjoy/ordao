@@ -94,3 +94,69 @@ ORDAO components combine to create apps for community DAOs. Several [fractal com
 ### Deploying Your Own
 
 To deploy an ORDAO instance for your community, you can use the [orfrapps](https://github.com/sim31/orfrapps) repository. It provides configuration files, deployment scripts, and CLI tools for setting up and maintaining ORDAO instances for fractal communities. This repository (ordao) contains the source code and is included in orfrapps as a submodule.
+
+## Development
+
+You can run individual ORDAO components or the whole ORDAO fractal app locally by using scripts in `package.json`. The project uses [Lerna](https://lerna.js.org/) workspaces.
+
+### Local Dev Workflow
+
+To run the full ORDAO stack locally against a local Hardhat chain:
+
+1. **Start a local chain** (keep running in its own terminal):
+   ```shell
+   npm run dev:chain
+   ```
+
+2. **Deploy contracts** to the local chain:
+   ```shell
+   npm run dev:cdeploy
+   ```
+   Alternatives: `dev:cdeploy:erc20` deploys with an ERC-20 parent Respect token.
+
+3. **Start ornode** (connects to local chain and local MongoDB):
+   ```shell
+   npm run dev:ornode-clean
+   ```
+   Use `dev:ornode` to keep existing data, or `dev:ornode-erc20-clean` / `dev:ornode-erc20` for ERC-20 variants.
+
+4. **Start the GUI** dev server (keep running in its own terminal):
+   ```shell
+   npm run dev:gui
+   ```
+   Alternative: `dev:gui-erc20` for the ERC-20 variant.
+
+5. **Watch for code changes** (optional, rebuilds libraries automatically):
+   ```shell
+   npm run dev:watch
+   ```
+   This watches all packages except the GUI and rebuilds dependents on change.
+
+### Developing Against Testnets
+
+Scripts are also available for running against live testnets:
+
+| Ornode | GUI | Network |
+|---|---|---|
+| `dev-op-sepolia:ornode` | `dev-op-sepolia:gui` | OP Sepolia |
+| `dev-of2:ornode` | `dev-of2:gui` | Optimism Fractal |
+| `dev-zaof:ornode` | `dev-zaof:gui` | ZAO Fractal |
+
+### Build
+
+```shell
+npm run build             # build all packages (via Lerna)
+npm run build-no-ornode   # build all except ornode
+npm run build-clean       # clean and rebuild all from scratch
+npm run clean             # clean all build outputs
+```
+
+### Other Useful Scripts
+
+| Command | Description |
+|---|---|
+| `npm test` | Run tests across all packages |
+| `npm run test-integration` | Run integration tests |
+| `npm run watch` | Watch all packages and rebuild on change (including dependents) |
+| `npm run gen-ornode-client` | Regenerate the ornode API client and copy it into orclient |
+| `npm run dev:orclient-docs` | Serve orclient-docs locally on port 5174 |
