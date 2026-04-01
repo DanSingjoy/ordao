@@ -1,7 +1,5 @@
 # ORDAO
 
-<!-- TODO: link -->
-
 ORDAO (Optimistic Respect-based DAO) is a toolset for type of DAOs which use non-transferrable reputation token (Respect).
 
 These are the main components of ORDAO:
@@ -10,15 +8,23 @@ These are the main components of ORDAO:
 * [Solidity Smart Contracts](./contracts/)
   * [OREC (implementation)](./contracts/packages/orec/);
   * [Respect1155](./contracts/packages/respect1155/) - Respect token contract based on ERC-1155 standard;
+  * [SolidRespect](./contracts/packages/solid-respect/) - ERC-20-compatible non-transferrable Respect token where the entire distribution is fixed at deployment
 * [Services](./services/)
   * [ornode](./services/ornode/) - API service for storing OREC proposals and Respect token metadata;
 * [Libraries for interfacing with OREC](./libs/)
   * [orclient](./libs/orclient/) - A library to use by Ordao apps / frontends, that abstracts all the communication with the backend and blockchain;
-  * [ortypes](./libs/ortypes) - Typescript types and helper utilities for Ordaos. Defines interfaces between orclient - ornode - contracts.
+  * [ortypes](./libs/ortypes/) - Typescript types and helper utilities for Ordaos. Defines interfaces between orclient - ornode - contracts;
+  * [privy-react-orclient](./libs/privy-react-orclient/) - Helpers for using orclient with Privy and React;
+* [Utility libraries](./libs/)
+  * [ts-utils](./libs/ts-utils/) - Shared Typescript utilities;
+  * [zod-utils](./libs/zod-utils/) - Helper utilities for working with Zod;
+  * [ethers-decode-error](./libs/ethers-decode-error/) - Decode ethers.js smart contract errors into human-readable messages;
 * [Apps](./apps/)
   * [gui](./apps/gui) - ORDAO frontend (currently only breakout-result submission frontend for fractals is implemented);
   * [orclient-docs](./apps/orclient-docs/) - API documentation for [orclient](./libs/orclient/); 
 * [Docs](./docs/) - documentation;
+
+For understanding of design philosophy and context you will want to start with reading [OREC whitepaper](docs/OREC.md).
 
 ```mermaid
 ---
@@ -26,40 +32,16 @@ title: Dependency graph
 ---
 flowchart TD
   apps/gui --> libs/orclient
-  apps/console --> libs/orclient
   apps/gui --> libs/ortypes
-  apps/console --> libs/ortypes
+  apps/gui --> libs/privy-react-orclient
+  apps/orclient-docs --> libs/orclient
+  libs/privy-react-orclient --> libs/orclient
   libs/orclient --> libs/ortypes
   services/ornode --> libs/ortypes
-  libs/ortypes --> contracts/respect1155
   libs/ortypes --> contracts/orec
+  libs/ortypes --> contracts/respect1155
+  contracts/solid-respect --> contracts/orec
 ```
 
 ## Relationship to Optimism Fractal
 ORDAO came about as an upgrade to Optimism Fractal. [Here](./docs/OF_ORDAO_UPGRADE.md) you can find comparison with older Optimism Fractal software and proposed upgrade path.
-
-## Workflow for testing packages locally before publishing
-Based on suggestion from [here](https://github.com/lerna/lerna/issues/2363).
-
-1. Setup [verdaccio](https://verdaccio.org/docs/installation) (standard setup, no need to change defaults. Once set up, just need to run `verdaccio`);
-2. In a project in which you want to test the packages add .npmrc file with this line: `registry=http://localhost:4873`;
-3. Run `npm run local-publish` script from ordao root; 
-4. Test the packages in external project
-  * Checkout out a new branch;
-  * Run `npm update <pkg>...` for packages which got updated and need testing. See that required packages got updated;
-  * Do the tests;
-5. If packages work as expected
-  * Run `npm run local-unpublish-all` to cleanup verdacio registry;
-  * Discard changes to ordao repo that `local-publish` script made (should be changes to lerna.json and package-lock.json);
-  * Run `npm run publish` to publish changes to public npmjs registry;
-  * In the external project
-    * Merge changes from the test branch into the main branch except for package-lock.json;
-    * Comment out registry setting in .npmrc
-    * Do `npm update <pkg>...`;
-    * Test again;
-    * Commit and push if needed;
-6. If packages do not work as expected;
-  * Make required changes in the packages;
-  * Commit them without commiting `lerna.json` and `package-lock.json` (or anything else that references the new versions);
-  * Go back to step 3;
-

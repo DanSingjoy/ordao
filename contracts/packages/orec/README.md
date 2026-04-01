@@ -1,14 +1,33 @@
 # Optimistic Respect-based Executive Contract (OREC)
 
-[Concept](../../../docs/OREC.md).
+This is an implementation of the [OREC concept](../../../docs/OREC.md).
 
+## Overview
+
+OREC enables a DAO to execute onchain transactions using an optimistic governance model weighted by a non-transferrable Respect token. A small group of contributors can propose and pass actions unless a sufficiently large opposing group vetoes them within a time window.
+
+### Constructor Parameters
+
+| Parameter | Description |
+|---|---|
+| `respectContract_` | Address of the Respect token contract (must support `IERC165`; either `IRespect` or `ERC20` `balanceOf` interface) |
+| `voteLenSeconds_` | Duration of the voting period (seconds) |
+| `vetoLenSeconds_` | Duration of the veto period (seconds) |
+| `minWeight_` | Minimum total yes-vote weight for a proposal to pass |
+| `maxLiveYesVotes_` | Maximum number of live proposals a single account can have yes-votes on (spam protection) |
+
+### Key Rules
+
+- A proposal **passes** if `yesWeight >= minWeight` and `noWeight * 2 < yesWeight`.
+- During the **veto period**, only no-votes are accepted. If no-votes exceed the threshold the proposal fails.
+- The contract is its own `Ownable` owner, so governance parameters can only be changed through a passed proposal.
+
+## Build and Test
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
+npm run build        # compile contracts and TypeScript
+npm run test         # run Hardhat tests
+npm run test-gas     # run tests with gas reporting
 ```
 
 ## Lifecycle of Proposal

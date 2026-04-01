@@ -1,30 +1,48 @@
-# React + TypeScript + Vite
+# ORDAO GUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application for interacting with ORDAO (Optimistic Respect-based DAO). Built with React, Vite, Chakra UI, and TanStack Router.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** with TypeScript
+- **Vite** (SWC plugin) for bundling and dev server
+- **Chakra UI v3** for components and styling
+- **TanStack Router** for file-based routing
+- **Privy** for wallet authentication
+- **[`@ordao/orclient`](../../libs/orclient/)** for blockchain and ornode communication
+- **[`@ordao/privy-react-orclient`](../../libs/privy-react-orclient/)** for React hooks integrating orclient with Privy
 
-## Expanding the ESLint configuration
+## Configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The app is configured through Vite environment variables. Create a `.env` file (or use mode-specific files like `.env.development`) with:
 
-- Configure the top-level `parserOptions` property like this:
+| Variable | Description |
+|---|---|
+| `VITE_APP_TITLE` | Display title for the app |
+| `VITE_NEW_RESPECT_ADDR` | Respect1155 contract address |
+| `VITE_OREC_ADDR` | OREC contract address |
+| `VITE_ORNODE_URL` | Ornode API URL |
+| `VITE_CHAIN_ID` | Chain ID (hex) |
+| `VITE_RPC_URLS` | Comma-separated RPC URLs |
+| `VITE_CHAIN_NAME` | Chain display name |
+| `VITE_BLOCKEXP_URL` | Block explorer URL |
+| `VITE_PRIVY_APP_ID` | Privy application ID |
+| `VITE_DOCS_ORIGIN` | Origin URL for orclient-docs (for browser console) |
+| `VITE_PARENT_RESPECT_LINK` | Link to parent Respect contract on block explorer |
+| `VITE_CHILD_RESPECT_LINK` | Link to child Respect token on block explorer |
+| `VITE_RESPECT_GAME_LINK` | Link to the Respect Game app |
+| `VITE_DEF_BREAKOUT_TYPE` | Default breakout type (e.g. `respectBreakout`, `respectBreakoutX2`) |
+| `VITE_FRACTAL_DOCS_URL` | *(optional)* URL for fractal documentation |
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+See `.env.development` for a local development example.
+
+## Development
+
+```shell
+npm run dev              # start dev server on port 5175 (local hardhat)
+npm run dev-op-sepolia   # dev against OP Sepolia testnet
+npm run dev-of2          # dev against Optimism Fractal deployment
+npm run build            # production build
+npm run preview          # preview production build
+npm run lint             # run ESLint
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
