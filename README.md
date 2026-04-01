@@ -81,6 +81,16 @@ flowchart TD
 * **[OF2 Concept](./docs/OF2-CONCEPT.md)** — How ORDAO implements the Optimism Fractal concept.
 * **[Upgrade path](./docs/OF_ORDAO_UPGRADE.md)** — Comparison with older Optimism Fractal software and the proposed upgrade path.
 
-## Relationship to Optimism Fractal
+## ORDAO Fractal Apps
 
-ORDAO came about as an upgrade to Optimism Fractal. See the [upgrade document](./docs/OF_ORDAO_UPGRADE.md) for a comparison with the older software and the proposed migration path.
+ORDAO components combine to create apps for community DAOs. Several [fractal communities](https://optimystics.io/blog/fractalhistory) are running ORDAO instances today:
+
+| Community | ORDAO Instance | Comments |
+|---|---|---|
+| [Eden Fractal](https://edenfractal.com/) | [eden.frapps.xyz](https://eden.frapps.xyz/) | |
+| [Optimism Fractal](https://optimismfractal.com/) | [optimism.frapps.xyz](https://optimism.frapps.xyz/) | ORDAO originated as an upgrade to Optimism Fractal's older software. See the [upgrade document](./docs/OF_ORDAO_UPGRADE.md) for a comparison and migration path. |
+| [ZAO Fractal](https://www.thezao.com/) | [zao.frapps.xyz](https://zao.frapps.xyz/) | |
+
+### Deploying Your Own
+
+To deploy an ORDAO instance for your community, you can use the [orfrapps](https://github.com/sim31/orfrapps) repository. It provides configuration files, deployment scripts, and CLI tools for setting up and maintaining ORDAO instances for fractal communities. This repository (ordao) contains the source code and is included in orfrapps as a submodule.
