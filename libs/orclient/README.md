@@ -6,6 +6,14 @@ Library for client-side ORDAO apps / frontends, that abstracts all the communica
 
 **[Full API documentation](https://orclient-docs.frapps.xyz/)**
 
+## Why Use Orclient?
+
+ORDAO apps store only **proposal hashes onchain** — the full proposal content and metadata lives offchain on the [ornode](../../services/ornode/). Interacting with the contracts directly would require you to manually manage this split. Orclient handles it for you:
+
+- **Proposal upload.** When you create a proposal, orclient validates the request, encodes it into onchain content + offchain attachment, submits the onchain transaction, and then uploads the full proposal to the ornode — retrying if needed.
+- **Input translation.** User-friendly inputs (e.g. Respect Game rankings) are translated into the low-level contract calls (mint amounts, token IDs, calldata) via the [ortypes](../ortypes/) translation layer. This design enables smart contracts that are simple, decoupled from application logic and specifics of consensus building games and their apps.
+- **Consistent reads.** When retrieving proposals, orclient fetches data from both the blockchain and the ornode, merging and validating them to give you a single, consistent `Proposal` object with decoded content.
+
 If you are building a React app with [Privy](https://www.privy.io/) for authentication, use [`@ordao/privy-react-orclient`](../privy-react-orclient/) which provides React hooks (`useOrclient`, `useOrclientWithBackup`) and a context provider that handle wallet connection and orclient lifecycle for you.
 
 ## Installation
