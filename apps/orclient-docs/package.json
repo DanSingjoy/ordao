@@ -9,7 +9,7 @@
     "build_from_orclient": "../../apps/orclient-docs/dist"
   },
   "scripts": {
-    "build": "cd $npm_package_config_orclient && npx typedoc ./src/orclient.ts --out $npm_package_config_build_from_orclient",
+    "build": "cd $npm_package_config_orclient && npx typedoc ./src/index.ts --out $npm_package_config_build_from_orclient --readme $npm_package_config_build_from_orclient/../INDEX.md",
     "start": "npx http-server -p 5174 -o ./dist",
     "clean": "rm -rf dist"
   },
