@@ -29,7 +29,7 @@ See `ornode-cfg-template.json` for a full example. Key fields:
 | `ornode.port` | Listen port (default: `8090`) |
 | `ornode.startPeriodNum` | Period number to start indexing from |
 | `ornode.listenForEvents` | Whether to subscribe to live contract events |
-| `ornode.sync` | *(optional)* If set, runs in sync mode (indexes a block range then exits) |
+| `ornode.sync` | *(optional)* If set, runs in sync mode (indexes a block range then exits). Useful for catching up on missed blockchain events (e.g. if ornode was down while events were emitted) |
 
 ## API Endpoints
 
