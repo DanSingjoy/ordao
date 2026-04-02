@@ -8,11 +8,11 @@ Respect is awarded as SBT (soulbound token) which can have attributes that signi
 
 Token ID 0 is reserved for the fungible Respect token. Non-fungible token IDs encode the owner address in the least-significant 20 bytes, so ownership is derivable directly from the token ID without storage lookups.
 
-## Contract Structure
+## Contracts
 
-- **`Respect1155Base`** — abstract base implementing the dual fungible/non-fungible ERC-1155 logic, `IRespect1155`, and `IRespect` interfaces. Transfer and approval operations revert (`OpNotSupported`) since tokens are soulbound.
-- **`Respect1155`** — concrete contract adding `Ownable` mint/burn functions (`mintRespect`, `burnRespect`, `mintRespectGroup`, `burnRespectGroup`) and URI management.
-- **`IRespect1155`** — interface extending `IERC1155` and `IRespect` with Respect-specific queries (`valueOfToken`, `respectOf`, `respectOfBatch`, `sumRespectOf`, `totalRespect`).
+- **[`Respect1155Base`](contracts/Respect1155Base.sol)** — abstract base implementing the dual fungible/non-fungible ERC-1155 logic, `IRespect1155`, and `IRespect` interfaces. Transfer and approval operations revert (`OpNotSupported`) since tokens are soulbound.
+- **[`Respect1155`](contracts/Respect1155.sol)** — concrete contract adding `Ownable` mint/burn functions (`mintRespect`, `burnRespect`, `mintRespectGroup`, `burnRespectGroup`) and URI management.
+- **[`IRespect1155`](contracts/IRespect1155.sol)** — interface extending `IERC1155` and `IRespect` with Respect-specific queries (`valueOfToken`, `respectOf`, `respectOfBatch`, `sumRespectOf`, `totalRespect`).
 
 ## Build and Test
 

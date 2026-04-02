@@ -1,6 +1,6 @@
 # ORDAO
 
-ORDAO (Optimistic Respect-based DAO) is a toolset for DAOs that use a non-transferrable reputation token (Respect). It provides smart contracts, a client library, a backend service, and a frontend — everything needed to run a DAO where proposals are voted on using Respect weight and executed onchain via [OREC](./docs/OREC.md).
+ORDAO (Optimistic Respect-based DAO) is a toolset for DAOs that use a non-transferrable reputation token (Respect). It provides smart contracts, a client library, a backend service, and a frontend — everything needed to run a DAO where proposals are voted on using reputation token and executed onchain via [OREC](./docs/OREC.md).
 
 For understanding of design philosophy and context, start with the [OREC whitepaper](./docs/OREC.md).
 
@@ -48,7 +48,7 @@ flowchart TD
 
 ## Components
 
-### Smart Contracts
+### [Smart Contracts](./contracts/packages/)
 
 * **[OREC](./contracts/packages/orec/)** — Optimistic Respect-based Executive Contract. Enables DAOs to execute onchain actions democratically while [avoiding voter-apathy](./docs/OREC.md#motivation) through a low quorum + veto period design.
 * **[Respect1155](./contracts/packages/respect1155/)** — ERC-1155 Respect token. Non-transferrable awards (NTTs) with a denomination that sums to a fungible Respect balance.
@@ -61,8 +61,8 @@ flowchart TD
 ### Libraries
 
 * **[orclient](./libs/orclient/)** — Client library for ORDAO apps. Handles proposal creation (translate → submit onchain → upload to ornode), voting, execution, and querying — abstracting the onchain/offchain split. ([Full API docs](https://orclient-docs.frapps.xyz/))
-* **[ortypes](./libs/ortypes/)** — Shared domain model: TypeScript types, Zod validation schemas, and the translation layer between user inputs and contract calls. The core that all other components depend on.
 * **[privy-react-orclient](./libs/privy-react-orclient/)** — React hooks and context provider for integrating orclient with [Privy](https://www.privy.io/) authentication. Includes fallback to read-only mode when no wallet is connected.
+* **[ortypes](./libs/ortypes/)** — Shared domain model: TypeScript types, Zod validation schemas, and the translation layer between user inputs and contract calls. The core that all other components depend on.
 
 ### Utility Libraries
 
@@ -78,8 +78,8 @@ flowchart TD
 ### Documentation
 
 * **[OREC whitepaper](./docs/OREC.md)** — Design and specification of the Optimistic Respect-based Executive Contract.
-* **[OF2 Concept](./docs/OF2-CONCEPT.md)** — How ORDAO implements the Optimism Fractal concept.
-* **[Upgrade path](./docs/OF_ORDAO_UPGRADE.md)** — Comparison with older Optimism Fractal software and the proposed upgrade path.
+* **[Optimism Fractal update to ORDAO](./docs/OF_ORDAO_UPGRADE.md)** — Comparison with older [Optimism Fractal](#ordao-fractal-apps) software and the proposed upgrade path. Provides historical context for how ORDAO was created.
+* **[Upgrade path details](./docs/UPGRADE_PATH.md)** - details of the upgrade procedure used by Optimism Fractal. A precedent for how communities can transition to ORDAO and how ORDAO can be renewed in the communities that already use it.
 
 ## ORDAO Fractal Apps
 

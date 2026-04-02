@@ -44,7 +44,7 @@ The first argument is a deployment key. Available keys: `"of"` (Optimism Fractal
 
 ### Read-only (no wallet)
 
-Use `createOrclientReader` when you only need to query data:
+Use `createOrclientReader` when you only need to query data or EIP-1193 provider is not available:
 
 ```ts
 import { createOrclientReader } from "@ordao/orclient/createOrclient.js";

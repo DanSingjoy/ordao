@@ -8,9 +8,11 @@ OREC enables a DAO to execute onchain transactions using an optimistic governanc
 
 ### Constructor Parameters
 
+Read [OREC specification](../../../docs/OREC.md#specification) to understand full meaning of these parameters.
+
 | Parameter | Description |
 |---|---|
-| `respectContract_` | Address of the Respect token contract (must support `IERC165`; either `IRespect` or `ERC20` `balanceOf` interface) |
+| `respectContract_` | Address of the Respect token contract (must support `IERC165`; either [`IRespect`](./contracts/IRespect.sol) or `ERC20` `balanceOf` interface) |
 | `voteLenSeconds_` | Duration of the voting period (seconds) |
 | `vetoLenSeconds_` | Duration of the veto period (seconds) |
 | `minWeight_` | Minimum total yes-vote weight for a proposal to pass |
@@ -21,6 +23,8 @@ OREC enables a DAO to execute onchain transactions using an optimistic governanc
 - A proposal **passes** if `yesWeight >= minWeight` and `noWeight * 2 < yesWeight`.
 - During the **veto period**, only no-votes are accepted. If no-votes exceed the threshold the proposal fails.
 - The contract is its own `Ownable` owner, so governance parameters can only be changed through a passed proposal.
+
+More details in [OREC whitepaper](../../../docs/OREC.md).
 
 ## Build and Test
 
@@ -109,13 +113,14 @@ stateDiagram-v2
 
 ```
 
+### Edge cases
 There are some additional states that are possible to reach but are not very likely or useful:
 
-* It is possible to cancel a failed proposal
+#### It is possible to cancel a failed proposal
 
 This will delete the proposal from storage, but unless it's part of some bigger execution context you're not going to save any gas;
 
-* It might be theoretically possible to cancel a proposal that is not yet passed or failed;
+#### It might be theoretically possible to cancel a proposal that is not yet passed or failed;
 
 1. Construct proposal A but don't submit it onchain;
 2. Submit proposal B to cancel proposal A (submit it onchain);
