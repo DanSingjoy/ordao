@@ -1,4 +1,4 @@
-# Ugrade Path for Optimism Fractal contracts
+# Upgrade Path for Optimism Fractal contracts
 
 *Historical document. See [Update](#update).*
 
@@ -16,7 +16,7 @@ So let's say this upgrade path is implemented and by season 4 we start using the
 ## Renewal of Respect distribution
 In the past we talked about the need for consensus process to take into account when the Respect was earned in order to prevent participants who earned a lot in the past, from wielding too much power. This upgrade mechanism would naturally solve this without adding any onchain overhead. This differentiation of old vs new Respect earnings can be useful for external uses of Respect distribution, like retroactive funding (e.g.: to differentiate what's has been rewarded already).
 
-## Bootstraping on the old Respect distribution
+## Bootstrapping on the old Respect distribution
 As you can see from [Optimism Fractal 2 concept](./OF2-CONCEPT.md) proposed here, the old Respect distribution would be used to manage onchain Respect distribution of a new version. This repeats the pattern that Optimism Fractal is already familiar with. The current Respect distribution is currently managed by msig of 4 people also known as Optimystics. This team of 4 people met and started respecting each other in EdenFractal. So you have old Respect-relationships creating and taking care of onchain aspect of new fractal deployments.
 
 ### Why not have the new version manage itself using the Respect distribution it itself produces? 
@@ -26,7 +26,7 @@ First of all, any new distribution would not be comparable to the old one in ter
 I would argue this is an overall superior way for DAO to manage itself, when compared to models where same DAO contract is also its top authority. A contract cannot protect itself from itself (its bugs and loopholes). But what you can do is use the well-tested old and reliable version of a DAO as a safeguard in case of issues in the new version.
 
 ## Precedent for regenerative fractal
-Being regenerative is about being able to efficiently loose the old parts of itself and replace them new.
+Being regenerative is about being able to efficiently lose the old parts of itself and replace them with new.
 
 Normally as an onchain DAO gets older it gets harder and harder to innovate because you're constrained by your past designs and old power structures. This upgrade path avoids this problem. It also respects the old (parent) version and uses it for security, which helps make a transition smoother.
 
@@ -35,7 +35,7 @@ But it is not just about being free from past designs, it's also about freedom f
 Overall this could set a precedent for a fractal that is able to periodically recreate itself and adapt.
 
 ## Going forward / scope of this proposal
-My intended scope of [Optimism Fractal 2](./OF2-CONCEPT.md) is 2-3 seasons (ideally starting with season 5). After that we might come up with something better and we might use an anologous upgrade path to do the transition.
+My intended scope of [Optimism Fractal 2](./OF2-CONCEPT.md) is 2-3 seasons (ideally starting with season 5). After that we might come up with something better and we might use an analogous upgrade path to do the transition.
 
 ## *UPDATE*
 Optimism Fractal passed [a proposal](https://snapshot.org/#/optimismfractal.eth/proposal/0x3c35f474b1e2c037f32455abd75d027aa29d402200ac649fecb8b46c789c26a3) to adopt ORDAO this season. The upgrade path ended up being a bit different. Namely in that it happened for season 5 as opposed to season 4 and there's no overlap between the new and old token distribution so far. See [this thread](https://discord.com/channels/1164572177115398184/1164572177878765591/1298633304383426621) for more details.

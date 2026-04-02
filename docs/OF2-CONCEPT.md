@@ -45,7 +45,7 @@
 
 ### 5. Parent Respect token
 
-1. Respect token deployed as the following contract on Optmimism Mainnet is "Parent Respect" of Optimism Fractal:
+1. Respect token deployed as the following contract on Optimism Mainnet is "Parent Respect" of Optimism Fractal:
   [0x53C9E3a44B08E7ECF3E8882996A500eb06c0C5CC](https://optimistic.etherscan.io/address/0x53c9e3a44b08e7ecf3e8882996a500eb06c0c5cc);
 
 ### 6. Executive contract

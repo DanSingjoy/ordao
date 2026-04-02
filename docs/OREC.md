@@ -36,7 +36,7 @@ If there's no veto period, there's an attack vector - people who want to pass a 
 
 To summarize: without veto period community has to be pressured to vote on everything all the time, just to be secure, which makes voter apathy problem really painful, whereas with veto period community can be mobilized only as needed.
 
-### Scalling decentralization as needed
+### Scaling decentralization as needed
 Sometimes community might not care about onchain presence of a DAO (what actions DAO account takes onchain), to warrant a whole onchain democratic governance process for every action a DAO takes. This is especially common if:
 * DAO is new;
 * DAO does not have a treasury;
