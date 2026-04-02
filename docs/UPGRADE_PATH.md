@@ -1,5 +1,7 @@
 # Ugrade Path for Optimism Fractal contracts
 
+*Historical document. See [Update](#update).*
+
 The following is a description of a potential path to transition to an implementation of [Optimism Fractal 2 concept](./OF2-CONCEPT.md).
 
 1. Deploy app that implements the [Optimism Fractal 2 concept](./OF2-CONCEPT.md). Call it a candidate version.

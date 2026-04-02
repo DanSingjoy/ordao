@@ -2,8 +2,6 @@
 
 **Optimistic Respect-based Executive Contract (OREC)** is a smart contract that executes transactions on behalf of a DAO, that has a non-transferrable reputation token (which we call “Respect” here). It enables minority of proactive contributors to act on behalf of a DAO even if they hold a small amount of Respect (hence "optimistic" in the name). The security comes from a time delay between voting and execution during which other contributors can easily block a transaction if they collectively have at least half the Respect that initiators have.
 
-<!-- Should I put it here or somewhere else? On the other hand this doc will be linked to by other docs which define mechanisms, and you would want them to link straight to the mechanism. On the other hand, this section would make this more complete. I think I will leave this here. I think I will leave this here. Ethereum EIP / ERCs also act as specifications but they include motivation section. -->
-
 ## Motivation
 
 <!-- TODO: Add more citations for the claims (probably want to use footnotes for this)
@@ -53,8 +51,6 @@ OREC solution enables you to start a DAO that is trully decentralized and democr
 ### Execution in costly environments
 "Vote only as needed" approach of OREC, combined with an additional processes and tools supporting deliberation and consensus building off-chain, makes OREC suitable for executing community consensus in environments with high transactions fees like Ethereum mainnet. Community builds consensus about what to execute off-chain, or on cheaper L2 chains and then executes that action on the Ethereum mainnet. Regardless of the process and tools being used for consensus building step, the mainnet account is still secure (from executing unwanted actions) through OREC - In case consensus building fails, it simply means more votes will be needed on the mainnet. Frontend tools could be created to help automate transition between consensus building and execution on the mainnet.
 
-
-<!-- TODO: rename to OREC? -->
 ## Specification
 
 ### Definitions
@@ -70,7 +66,6 @@ OREC solution enables you to start a DAO that is trully decentralized and democr
 - `max_live_votes` - limit for how many live proposals a single account can vote `YES` on;
 
 ### Mechanism
-<!-- TODO: Check if this matches implementation -->
 
 1. Anyone can create a proposal to execute some transaction;
 2. For `voting_period` from proposal creation anyone can vote `YES` or `NO` on a proposal;
@@ -84,13 +79,6 @@ OREC solution enables you to start a DAO that is trully decentralized and democr
 7. Proposal is said to be *failed* or *rejected* if it is past the `voting_period` and either 5.2. or 5.3. conditions are *not* satisfied;
 8. Proposal is said to be expired if it is rejected or its execution has been triggered. Otherwise proposal is said to be *live*;
 9. Each account can only be voting `YES` on up to `max_live_votes` *live* proposals at a time;
-
-
-<!-- TODO:
-* Spam prevention;
-* Alternative solutions;  
-* Wider applicability of OREC
-* -->
 
 ## Rationale
 
@@ -119,7 +107,7 @@ In Orec roles can arise naturally as people take initiatives. If someone takes i
 
 ## Further research
 
-<!-- Below are some things to look into further in relation to OREC. -->
+Below are some things to research further in relation to OREC.
 
 ### Applicability to other contexts
 
